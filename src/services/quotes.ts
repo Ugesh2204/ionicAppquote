@@ -16,6 +16,7 @@ export class QuotesService {
         this.favoriteQuotes.splice(position, 1);
     }
 
+    /**Slice will copy the array  */
     getFavoriteQuotes() {
         return this.favoriteQuotes.slice();
     }
