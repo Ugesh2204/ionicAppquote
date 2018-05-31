@@ -23,10 +23,23 @@ quotes: Quote[];
  }
 
 /**Display model  */
- onViewQuote(quote: Quote) {
+onViewQuote(quote: Quote) {
    /**Notice the create method */
-  const modal = this.modalCtrl.create(QuotePage);
+  const modal = this.modalCtrl.create(QuotePage, quote);
   modal.present();
+  /**life cycle hook */
+  modal.onDidDismiss( (remove: boolean) => {
+    if(remove) {
+      this.quotesService.removeQuoteFromFavorites(quote);
+      //this.quotes = this.quotesService.getFavoriteQuotes();
+      /**second method */
+      const position = this.quotes.findIndex((quoteEl: Quote) =>{
+        return quoteEl.id == quote.id;
+      });
+      this.quotes.splice(position, 1);
+    }
+    
+  });
  }
 
 }

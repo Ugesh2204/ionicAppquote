@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 
 
 
@@ -10,12 +10,24 @@ import { ViewController } from 'ionic-angular';
 })
 export class QuotePage {
 
-  /**View controller control the active view  */
-  constructor (private viewCtrl: ViewController) {
+  person: string;
+  text: string;
 
+  /**View controller control the active view  */
+  constructor (private viewCtrl: ViewController,
+                private navParams: NavParams) {
   }
-  onclose() {
-    this.viewCtrl.dismiss();
+
+  /**So when the page was create */
+  ionViewDidLoad() {
+    this.person = this.navParams.get('person');
+    this.text = this.navParams.get('text');
+  }
+
+  /**Retive the data from favorite */
+  onclose(remove = false) {
+    /**Passing the remove to favorite  true or false*/
+    this.viewCtrl.dismiss(remove);
   }
 
 
