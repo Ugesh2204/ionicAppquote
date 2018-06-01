@@ -24,7 +24,7 @@ export class QuotesPage implements OnInit {
   }
 
 /**Interface we are importing at top "Quote" */
-  onAddToFavorite(selectedQuote: Quote) {
+  onAddToFavorites(selectedQuote: Quote) {
     const alert = this.alertCtrl.create({
       title: 'Add Quote',
       subTitle: 'Are you sure?',
@@ -61,5 +61,16 @@ export class QuotesPage implements OnInit {
  // Add elvis operator (?) in template to use this approach
 //}
 
+
+onRemoveFromFavorites(quote: Quote) {
+ this.quotesService.removeQuoteFromFavorites(quote);
+}
+
+/**Adding a helper method cherck services*/
+/**Returning from service */
+
+isFavorite(quote: Quote) {
+ return this.quotesService.isQuoteFavorite(quote);
+}
 
 }
